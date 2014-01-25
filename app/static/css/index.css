@@ -1,5 +1,7 @@
 body {
-    font: 13px/1.4 Helvetica,arial,freesans,clean,sans-serif
+    font: 13px/1.4 Helvetica,arial,freesans,clean,sans-serif;
+    width: 400px;
+    overflow:overflow;
 }
 
 code {
@@ -9,7 +11,7 @@ code {
     margin-bottom: 10px;
     background-color: #EEE;
     overflow: auto;
-    width: auto;
+    width: 300px;
     max-height: 600px;
     background-color: #EEE;
     display: block;
