@@ -16,3 +16,8 @@ code {
     background-color: #EEE;
     display: block;
 }
+
+#id {
+    width:auto;
+    height:400px;
+}
