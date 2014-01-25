@@ -7,7 +7,7 @@ body {
 code {
     margin: 0px;
     padding: 5px;
-    font-family: Consolas,Menlo,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New,monospace,serif;
+    font: 15px Consolas,Menlo,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New,monospace,serif;
     margin-bottom: 10px;
     background-color: #EEE;
     overflow: auto;
