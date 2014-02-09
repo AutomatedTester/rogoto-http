@@ -1,0 +1,1 @@
+rogoto = require('rogoto-js');
