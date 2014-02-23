@@ -73,6 +73,7 @@ var draw = function draw (logoCode) {
                         currentDirection += (cmd[1] * 1);
                     } else {
                         currentDirection -= (cmd[1] * 1);
+                        if (currentDirection == -180) currentDirection = 180;
                     }
                     break;
             }
