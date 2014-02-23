@@ -77,8 +77,9 @@ var draw = function draw (logoCode) {
                     }
                     break;
             }
+            ctx.stroke();
         }
-        ctx.stroke();
+
     }
 }
 
