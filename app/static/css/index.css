@@ -17,6 +17,12 @@ code {
     display: block;
 }
 
+canvas {
+    width:400px;
+    height:600px;
+    border: solid;
+}
+
 #id {
     width:auto;
     height:400px;
