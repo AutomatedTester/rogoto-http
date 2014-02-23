@@ -15,3 +15,7 @@ class TestEndpoints(object):
         rv = self.app.get('/')
         assert "Rogoto" in rv.data
         assert "Logo" in rv.data
+
+    def test_logo_page_exists(self):
+        rv = self.app.get('/logo')
+        assert "canvas" in rv.data
