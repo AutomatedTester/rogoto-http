@@ -22,6 +22,7 @@ var draw = function draw (logoCode) {
         ctx.moveTo(CENTRE_X, CENTRE_Y);
         var currentX = CENTRE_X;
         var currentY = CENTRE_Y;
+        var currentDirection = 0;
         for (var i = 0; i < logoCode.length; i++) {
             var cmd = logoCode[i].split(' ');
             switch (cmd[0]) {
@@ -36,7 +37,16 @@ var draw = function draw (logoCode) {
                     }
                     break;
                 case 'forward':
-                    currentY -= (cmd[1]*1);
+                    if (currentDirection == 0) {
+                        currentY -= (cmd[1]*1);
+                    } else if (currentDirection == -90) {
+                        currentX -= (cmd[1]*1);
+                    } else if (currentDirection == 180) {
+                        currentY += (cmd[1]*1);
+                    } else if (currentDirection == 90) {
+                        currentX += (cmd[1]*1);
+                    }
+
                     if (penState == 'down') {
                         ctx.lineTo(currentX, currentY);
                     } else {
@@ -44,12 +54,36 @@ var draw = function draw (logoCode) {
                     }
                     break;
                 case 'back':
-                    currentY += (cmd[1]*1);
+                    if (currentDirection == 0) {
+                        currentY += (cmd[1]*1);
+                    } else if (currentDirection == -90) {
+                        currentX += (cmd[1]*1);
+                    } else if (currentDirection == 180) {
+                        currentY -= (cmd[1]*1);
+                    } else if (currentDirection == 90) {
+                        currentX -= (cmd[1]*1);
+                    }
+
                     if (penState == 'down') {
                         ctx.lineTo(currentX, currentY);
                     } else {
                         ctx.moveTo(currentX, currentY);
                     }
+                    break;
+                case 'left':
+                    if (currentDirection <= 180 && currentDirection >= 0){
+                        currentDirection -= (cmd[1] * 1);
+                    } else {
+                        currentDirection += (cmd[1] * 1);
+                    }
+                    break;
+                case 'right':
+                    if (currentDirection >= 180 && currentDirection <= 0){
+                        currentDirection += (cmd[1] * 1);
+                    } else {
+                        currentDirection -= (cmd[1] * 1);
+                    }
+                    break;
             }
         }
         ctx.stroke();
