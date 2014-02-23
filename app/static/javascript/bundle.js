@@ -29,7 +29,7 @@ var draw = function draw (logoCode) {
             switch (cmd[0]) {
                 case 'pendown':
                     if (penState == 'up') {
-                        penState = 'down'
+                        penState = 'down';
                     }
                     break;
                 case 'penup':
@@ -38,7 +38,7 @@ var draw = function draw (logoCode) {
                     }
                     break;
                 case 'forward':
-                    if (currentDirection == 0) {
+                    if (currentDirection === 0) {
                         currentY -= (cmd[1]*1);
                     } else if (currentDirection == -90) {
                         currentX -= (cmd[1]*1);
@@ -50,7 +50,7 @@ var draw = function draw (logoCode) {
                     moveOrDraw(ctx, currentX, currentY);
                     break;
                 case 'back':
-                    if (currentDirection == 0) {
+                    if (currentDirection === 0) {
                         currentY += (cmd[1]*1);
                     } else if (currentDirection == -90) {
                         currentX += (cmd[1]*1);
@@ -81,7 +81,7 @@ var draw = function draw (logoCode) {
         }
 
     }
-}
+};
 
 var moveOrDraw = function (ctx, x, y) {
     if (penState == 'down') {
@@ -89,7 +89,7 @@ var moveOrDraw = function (ctx, x, y) {
     } else {
         ctx.moveTo(x, y);
     }
-}
+};
 
 },{"rogoto-js":2}],2:[function(require,module,exports){
 function RogotoParserException (message) {
