@@ -20,7 +20,8 @@ var draw = function draw (logoCode) {
         var ctx = canvas.getContext("2d");
         ctx.beginPath();
         ctx.moveTo(CENTRE_X, CENTRE_Y);
-        // TODO: must keep state
+        var currentX = CENTRE_X;
+        var currentY = CENTRE_Y;
         for (var i = 0; i < logoCode.length; i++) {
             var cmd = logoCode[i].split(' ');
             switch (cmd[0]) {
@@ -35,17 +36,19 @@ var draw = function draw (logoCode) {
                     }
                     break;
                 case 'forward':
+                    currentY -= (cmd[1]*1);
                     if (penState == 'down') {
-                        ctx.lineTo(CENTRE_X, CENTRE_Y - cmd[1]);
+                        ctx.lineTo(currentX, currentY);
                     } else {
-                        ctx.moveTo(CENTRE_X, CENTRE_Y - cmd[1]);
+                        ctx.moveTo(currentX, currentY);
                     }
                     break;
                 case 'back':
+                    currentY += (cmd[1]*1);
                     if (penState == 'down') {
-                        ctx.lineTo(CENTRE_X, CENTRE_Y + cmd[1]);
+                        ctx.lineTo(currentX, currentY);
                     } else {
-                        ctx.moveTo(CENTRE_X, CENTRE_Y + cmd[1]);
+                        ctx.moveTo(currentX, currentY);
                     }
             }
         }
