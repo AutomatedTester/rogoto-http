@@ -12,12 +12,12 @@ run.addEventListener('click', function () {
 });
 var CENTRE_X = 100;
 var CENTRE_Y = 100;
-
+var penState = 'up';
 
 var draw = function draw (logoCode) {
     var canvas = document.getElementById('logo');
     if (canvas.getContext) {
-        var penState = 'up';
+
         var ctx = canvas.getContext("2d");
         ctx.beginPath();
         ctx.moveTo(CENTRE_X, CENTRE_Y);
@@ -47,12 +47,7 @@ var draw = function draw (logoCode) {
                     } else if (currentDirection == 90) {
                         currentX += (cmd[1]*1);
                     }
-
-                    if (penState == 'down') {
-                        ctx.lineTo(currentX, currentY);
-                    } else {
-                        ctx.moveTo(currentX, currentY);
-                    }
+                    moveOrDraw(ctx, currentX, currentY);
                     break;
                 case 'back':
                     if (currentDirection == 0) {
@@ -64,12 +59,7 @@ var draw = function draw (logoCode) {
                     } else if (currentDirection == 90) {
                         currentX -= (cmd[1]*1);
                     }
-
-                    if (penState == 'down') {
-                        ctx.lineTo(currentX, currentY);
-                    } else {
-                        ctx.moveTo(currentX, currentY);
-                    }
+                    moveOrDraw(ctx, currentX, currentY);
                     break;
                 case 'left':
                     if (currentDirection <= 180 && currentDirection >= 0){
@@ -88,6 +78,14 @@ var draw = function draw (logoCode) {
             }
         }
         ctx.stroke();
+    }
+}
+
+var moveOrDraw = function (ctx, x, y) {
+    if (penState == 'down') {
+        ctx.lineTo(x, y);
+    } else {
+        ctx.moveTo(x, y);
     }
 }
 
