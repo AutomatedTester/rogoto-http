@@ -1,12 +1,20 @@
 language: python
 python:
-  - 2.6
-  - 2.7
-
+- 2.6
+- 2.7
+addons:
+  sauce_connect: true
 install: pip install -r requirements.txt
 before_script:
-  - sh -e /etc/init.d/xvfb start
+- sh -e /etc/init.d/xvfb start
 env:
   global:
   - DISPLAY=':99.0'
+  - secure: YhLfj6QxKtXPwP9DQTN8AkD+XLUj/6C6XCttBOQr76my5m/1z8eUp/B+7ja0QmKQ2SSKzD9AYw6jtzaBeFQ2DR0fvyC+PIsEXqQDFgAsKkKx0RPP1mzNiybaQby9gPtcMOGtr6hsUy7zB5OIz/EJAR+iplFyULKwFQkGHAxvhjM=
+  - secure: njsb5KgRJQ8LK2/CuF+nxbdpwxCUqZXPYYC9TVFWSg4STvLLW20h/KleWZL8KtzmKd5hFbQPA8l5afhKoTuXXIOQ5JIKGOjorAbdzPqxhZX2CwCGpN6KSSvwe0s5Yr0vqjGpbrSTbnli+fDRGBiGWMNlA5WjMJ3uaavQCY1dbTM=
+  matrix:
+  - SAUCE_PLATFORM='Windows 7' SAUCE_BROWSER='FIREFOX' SAUCE_BROWSER_VERSION=21
+  - SAUCE_PLATFORM='Windows 7' SAUCE_BROWSER='CHROME' SAUCE_BROWSER_VERSION=''
+  - SAUCE_PLATFORM='Linux' SAUCE_BROWSER='FIREFOX' SAUCE_BROWSER_VERSION=''
+  - SAUCE_PLATFORM='Linux' SAUCE_BROWSER='CHROME' SAUCE_BROWSER_VERSION=''
 script: py.test

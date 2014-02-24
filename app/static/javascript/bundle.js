@@ -3,13 +3,7 @@ RogotoParser = require('rogoto-js');
 
 parser = new RogotoParser();
 
-var run = document.getElementById('run');
 var logoCode = [];
-run.addEventListener('click', function () {
-    var code = document.getElementById('code');
-    logoCode = parser.parse(code.value);
-    draw(logoCode);
-});
 var CENTRE_X = 100;
 var CENTRE_Y = 100;
 var penState = 'up';
@@ -17,7 +11,6 @@ var penState = 'up';
 var draw = function draw (logoCode) {
     var canvas = document.getElementById('logo');
     if (canvas.getContext) {
-
         var ctx = canvas.getContext("2d");
         ctx.beginPath();
         ctx.moveTo(CENTRE_X, CENTRE_Y);
@@ -91,6 +84,27 @@ var moveOrDraw = function (ctx, x, y) {
     }
 };
 
+function clearCanvas(context, canvas) {
+  context.clearRect(0,0,context.canvas.width,context.canvas.height);
+}
+
+var run = document.getElementById('run');
+run.addEventListener('click', function () {
+    var code = document.getElementById('code');
+    logoCode = parser.parse(code.value);
+    draw(logoCode);
+});
+
+var clear = document.getElementById('clear');
+clear.addEventListener('click', function () {
+    var code = document.getElementById('code');
+    code.value = '';
+    var canvas = document.getElementById('logo');
+    if (canvas.getContext) {
+        var ctx = canvas.getContext('2d');
+        clearCanvas(ctx, canvas);
+    }
+});
 },{"rogoto-js":2}],2:[function(require,module,exports){
 function RogotoParserException (message) {
     this.message = message;
