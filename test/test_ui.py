@@ -20,6 +20,7 @@ class TestUserInterface(object):
             desired_capabilities['platform'] = os.environ['SAUCE_PLATFORM']
             desired_capabilities['name'] = 'Rogoto HTTP Server'
             desired_capabilities['tunnel-identifier'] = os.environ['TRAVIS_JOB_NUMBER']
+            desired_capabilities['device-orientation'] = 'portrait'
             desired_capabilities['build'] = os.environ['TRAVIS_BUILD_NUMBER']
             desired_capabilities['tags'] = [os.environ['TRAVIS_PYTHON_VERSION'], 'CI']
             hub_url = "%s:%s@localhost:4445" % (cls.username, cls.key)
