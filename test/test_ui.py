@@ -1,16 +1,14 @@
 import os
 
-from app import app
 from selenium import webdriver
 
 
 class TestUserInterface(object):
     """Tests for Rogoto Web UI"""
+
     @classmethod
     def setup_class(cls):
-        cls.app = app.test_client()
         try:
-            cls.app = app.test_client()
             cls.username = os.environ['SAUCE_USERNAME']
             cls.key = os.environ['SAUCE_ACCESS_KEY']
             desired_capabilities = getattr(webdriver.DesiredCapabilities,
@@ -20,7 +18,7 @@ class TestUserInterface(object):
                 raise "Browser Capabilities Not Found"
             desired_capabilities['version'] = os.environ['SAUCE_BROWSER_VERSION']
             desired_capabilities['platform'] = os.environ['SAUCE_PLATFORM']
-            desired_capabilities['name'] = 'Bisect in the cloud'
+            desired_capabilities['name'] = 'Rogoto HTTP Server'
             desired_capabilities['tunnel-identifier'] = os.environ['TRAVIS_JOB_NUMBER']
             desired_capabilities['build'] = os.environ['TRAVIS_BUILD_NUMBER']
             desired_capabilities['tags'] = [os.environ['TRAVIS_PYTHON_VERSION'], 'CI']
