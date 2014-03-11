@@ -1,5 +1,6 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 RogotoParser = require('rogoto-js');
+mathext = require('mathext-js');
 
 parser = new RogotoParser();
 
@@ -31,41 +32,27 @@ var draw = function draw (logoCode) {
                     }
                     break;
                 case 'forward':
-                    if (currentDirection === 0) {
-                        currentY -= (cmd[1]*1);
-                    } else if (currentDirection == -90) {
-                        currentX -= (cmd[1]*1);
-                    } else if (currentDirection == 180) {
-                        currentY += (cmd[1]*1);
-                    } else if (currentDirection == 90) {
-                        currentX += (cmd[1]*1);
-                    }
+                    currentX += parseInt(cmd[1]) * Math.cos(mathext.toRadians(currentDirection));
+                    currentY += parseInt(cmd[1]) * Math.sin(mathext.toRadians(currentDirection));
                     moveOrDraw(ctx, currentX, currentY);
                     break;
                 case 'back':
-                    if (currentDirection === 0) {
-                        currentY += (cmd[1]*1);
-                    } else if (currentDirection == -90) {
-                        currentX += (cmd[1]*1);
-                    } else if (currentDirection == 180) {
-                        currentY -= (cmd[1]*1);
-                    } else if (currentDirection == 90) {
-                        currentX -= (cmd[1]*1);
-                    }
+                    currentX += parseInt(cmd[1]) * Math.cos(mathext.toRadians(currentDirection));
+                    currentY += parseInt(cmd[1]) * Math.sin(mathext.toRadians(currentDirection));
                     moveOrDraw(ctx, currentX, currentY);
                     break;
                 case 'left':
                     if (currentDirection <= 180 && currentDirection >= 0){
-                        currentDirection -= (cmd[1] * 1);
+                        currentDirection -= parseInt(cmd[1]);
                     } else {
-                        currentDirection += (cmd[1] * 1);
+                        currentDirection += parseInt(cmd[1]);
                     }
                     break;
                 case 'right':
                     if (currentDirection >= 180 && currentDirection <= 0){
-                        currentDirection += (cmd[1] * 1);
+                        currentDirection += parseInt(cmd[1]);
                     } else {
-                        currentDirection -= (cmd[1] * 1);
+                        currentDirection -= parseInt(cmd[1]);
                         if (currentDirection == -180) currentDirection = 180;
                     }
                     break;
@@ -105,7 +92,19 @@ clear.addEventListener('click', function () {
         clearCanvas(ctx, canvas);
     }
 });
-},{"rogoto-js":2}],2:[function(require,module,exports){
+},{"mathext-js":2,"rogoto-js":3}],2:[function(require,module,exports){
+function Mathext () {
+}
+
+Mathext.prototype.toRadians = function(degrees) {
+    return (degrees * (Math.PI/180)).toFixed(3);
+};
+
+Mathext.prototype.toDegrees = function(radians) {
+    return (radians * (180/Math.PI)).toFixed(2);
+};
+module.exports = new Mathext();
+},{}],3:[function(require,module,exports){
 function RogotoParserException (message) {
     this.message = message;
     this.name = "RogotoParserException";

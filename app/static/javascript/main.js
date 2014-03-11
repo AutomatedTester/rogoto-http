@@ -1,4 +1,5 @@
 RogotoParser = require('rogoto-js');
+mathext = require('mathext-js');
 
 parser = new RogotoParser();
 
@@ -30,41 +31,27 @@ var draw = function draw (logoCode) {
                     }
                     break;
                 case 'forward':
-                    if (currentDirection === 0) {
-                        currentY -= (cmd[1]*1);
-                    } else if (currentDirection == -90) {
-                        currentX -= (cmd[1]*1);
-                    } else if (currentDirection == 180) {
-                        currentY += (cmd[1]*1);
-                    } else if (currentDirection == 90) {
-                        currentX += (cmd[1]*1);
-                    }
+                    currentX += parseInt(cmd[1]) * Math.cos(mathext.toRadians(currentDirection));
+                    currentY += parseInt(cmd[1]) * Math.sin(mathext.toRadians(currentDirection));
                     moveOrDraw(ctx, currentX, currentY);
                     break;
                 case 'back':
-                    if (currentDirection === 0) {
-                        currentY += (cmd[1]*1);
-                    } else if (currentDirection == -90) {
-                        currentX += (cmd[1]*1);
-                    } else if (currentDirection == 180) {
-                        currentY -= (cmd[1]*1);
-                    } else if (currentDirection == 90) {
-                        currentX -= (cmd[1]*1);
-                    }
+                    currentX += parseInt(cmd[1]) * Math.cos(mathext.toRadians(currentDirection));
+                    currentY += parseInt(cmd[1]) * Math.sin(mathext.toRadians(currentDirection));
                     moveOrDraw(ctx, currentX, currentY);
                     break;
                 case 'left':
                     if (currentDirection <= 180 && currentDirection >= 0){
-                        currentDirection -= (cmd[1] * 1);
+                        currentDirection -= parseInt(cmd[1]);
                     } else {
-                        currentDirection += (cmd[1] * 1);
+                        currentDirection += parseInt(cmd[1]);
                     }
                     break;
                 case 'right':
                     if (currentDirection >= 180 && currentDirection <= 0){
-                        currentDirection += (cmd[1] * 1);
+                        currentDirection += parseInt(cmd[1]);
                     } else {
-                        currentDirection -= (cmd[1] * 1);
+                        currentDirection -= parseInt(cmd[1]);
                         if (currentDirection == -180) currentDirection = 180;
                     }
                     break;
