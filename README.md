@@ -24,7 +24,7 @@ and on the robot as it draws on paper.
 ### Making changes to the JavaScript
 
 The Rogoto JS parser is a separate project and can be found in its
-own (Github project)[https://github.com/automatedtester/rogoto-js].
+own [Github project](https://github.com/automatedtester/rogoto-js).
 To make changes to the way the Rogoto syntax is rendered, make changes
 to `main.js` and then run `browserify main.js -o bundle.js` and commit
 both `main.js` and `bundle.js`
