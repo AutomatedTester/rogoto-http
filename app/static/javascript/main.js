@@ -1,3 +1,4 @@
+/*jshint -W065 */
 RogotoParser = require('rogoto-js');
 mathext = require('mathext-js');
 
@@ -72,7 +73,7 @@ var moveOrDraw = function (ctx, x, y) {
 
 var clearCanvas = function (context, canvas) {
   context.clearRect(0,0,context.canvas.width,context.canvas.height);
-}
+};
 
 var run = document.getElementById('run');
 run.addEventListener('click', function () {
