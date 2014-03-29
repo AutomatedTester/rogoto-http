@@ -71,7 +71,7 @@ var moveOrDraw = function (ctx, x, y) {
     }
 };
 
-function clearCanvas(context, canvas) {
+var clearCanvas = function (context, canvas) {
   context.clearRect(0,0,context.canvas.width,context.canvas.height);
 }
 
