@@ -1,4 +1,4 @@
-from flask import render_template
+from flask import render_template, jsonify
 from app import app
 
 
@@ -11,3 +11,8 @@ def index():
 @app.route('/logo')
 def control():
     return render_template("logo.html")
+
+
+@app.route('/logo/drive', methods=['POST'])
+def drive():
+    pass

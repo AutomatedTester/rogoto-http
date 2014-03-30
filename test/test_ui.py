@@ -44,3 +44,8 @@ class TestUserInterface(object):
         self.driver.find_element('id', 'code').send_keys("penup\npendown")
         self.driver.find_element('id', 'clear').click()
         assert "" == self.driver.find_element('id', 'code').get_attribute('value')
+
+    def test_we_can_post_drive_data(self):
+        self.driver.get('http://localhost:5000/logo')
+        self.driver.find_element('id', 'code').send_keys("penup\nforward 10\npendown")
+        self.driver.find_element('id', 'driver').click()

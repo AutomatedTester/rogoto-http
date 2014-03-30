@@ -77,7 +77,8 @@ var clearCanvas = function (context, canvas) {
 };
 
 var run = document.getElementById('run');
-run.addEventListener('click', function () {
+run.addEventListener('click', function (e) {
+    e.preventDefault();
     var code = document.getElementById('code');
     logoCode = parser.parse(code.value);
     draw(logoCode);
@@ -92,6 +93,32 @@ clear.addEventListener('click', function () {
         var ctx = canvas.getContext('2d');
         clearCanvas(ctx, canvas);
     }
+});
+
+var post = function(url) {
+    var httpRequest;
+    var logoForm = document.getElementById('logoForm');
+    logoForm.addEventListener('submit', function() {
+        return false;
+    });
+    if (window.XMLHttpRequest) {
+        httpRequest = new XMLHttpRequest();
+    }
+
+    if (!httpRequest) {
+        alert('Unfortunately we can\'t create a http request which means we can\'t drive the robot, sorry!');
+        return false;
+    }
+    httpRequest.onreadystatechange = function() {
+        alert('posted');
+    };
+    httpRequest.open('POST', url);
+    httpRequest.send(new FormData(logoForm));
+};
+
+var driver = document.getElementById('driver');
+driver.addEventListener('click', function() {
+    post(document.location.href);
 });
 },{"mathext-js":2,"rogoto-js":3}],2:[function(require,module,exports){
 function Mathext () {
