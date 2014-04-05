@@ -1,3 +1,5 @@
 flask
 pytest
 selenium
+git+https://github.com/DexterInd/BrickPi_Python.git#egg=BrickPi
+rogoto-core
