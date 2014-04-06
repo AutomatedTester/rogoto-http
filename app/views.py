@@ -1,5 +1,7 @@
-from flask import render_template, jsonify
+from flask import render_template, jsonify, request
 from app import app
+from rogoto import RogotoParser
+from rogoto_core import rogoto
 
 
 @app.route('/')
@@ -15,4 +17,12 @@ def control():
 
 @app.route('/logo/drive', methods=['POST'])
 def drive():
-    pass
+    parser = RogotoParser()
+    codes = parser.parse(request.form['code'])
+    for code in codes:
+        mthd = getattr(rogoto, code)
+        mthd_args = code.split(' ')
+        if len(mthd_args) > 1:
+            mthd(mthd_args[1])
+        else:
+            mthd()

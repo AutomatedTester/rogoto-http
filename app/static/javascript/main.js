@@ -117,5 +117,5 @@ var post = function(url) {
 
 var driver = document.getElementById('driver');
 driver.addEventListener('click', function() {
-    post(document.location.href);
+    post(document.location.href + "/drive");
 });
