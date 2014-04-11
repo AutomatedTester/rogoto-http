@@ -1,5 +1,6 @@
 flask
 pytest
 selenium
+RogotoParser
 git+https://github.com/DexterInd/BrickPi_Python.git#egg=BrickPi
 rogoto-core
