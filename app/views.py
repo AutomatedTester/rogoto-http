@@ -1,7 +1,14 @@
 from flask import render_template, jsonify, request
 from app import app
 from rogoto import RogotoParser
-from rogoto_core import rogoto
+try:
+    from rogoto_core import rogoto
+except:
+    # Likely that something went wrong with the install
+    print """Could not import rogoto. Either not on Linux
+    or there was a failure during installing the
+    dependencies."""
+    rogoto = object()
 
 
 @app.route('/')
