@@ -9,6 +9,13 @@ var CENTRE_X = 100;
 var CENTRE_Y = 100;
 var penState = 'up';
 
+var initialCanvas = document.getElementById('logo');
+if (initialCanvas.getContext) {
+    var ctx = initialCanvas.getContext("2d");
+    ctx.fillStyle = "#000"
+    ctx.fillRect(0, 0, 300, 600);
+}
+
 var draw = function draw (logoCode) {
     var canvas = document.getElementById('logo');
     if (canvas.getContext) {
