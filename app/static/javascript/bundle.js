@@ -14,6 +14,8 @@ var draw = function draw (logoCode) {
     var canvas = document.getElementById('logo');
     if (canvas.getContext) {
         var ctx = canvas.getContext("2d");
+        ctx.fillStyle = "#000"
+        ctx.fillRect(0, 0, 300, 600);
         ctx.beginPath();
         ctx.moveTo(CENTRE_X, CENTRE_Y);
         var currentX = CENTRE_X;
@@ -58,6 +60,7 @@ var draw = function draw (logoCode) {
                     }
                     break;
             }
+            ctx.strokeStyle = "#33ff00"
             ctx.stroke();
         }
 
