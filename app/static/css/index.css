@@ -1,11 +1,11 @@
 body {
     font: 13px/1.4 Helvetica,arial,freesans,clean,sans-serif;
-    width: 400px;
-    overflow:overflow;
+    overflow: overflow;
+    background-color: #F6F4EC;
 }
 
 code {
-    margin: 0px;
+    margin: auto;
     padding: 5px;
     font: 15px Consolas,Menlo,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New,monospace,serif;
     margin-bottom: 10px;
@@ -18,12 +18,26 @@ code {
 }
 
 canvas {
-    width:400px;
-    height:400px;
+    width: 400px;
+    height: 400px;
     border: solid;
 }
 
-#id {
-    width:auto;
-    height:400px;
+.lineUp {
+    width: 400px;
+}
+
+.buttons {
+    float: left;
+}
+
+#code {
+    float: left;
+    width: 400px;
+    height: 300px;
+}
+
+#container {
+    margin: auto;
+    width: 600px;
 }
