@@ -1,4 +1,5 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+/*jshint -W065 */
 RogotoParser = require('rogoto-js');
 mathext = require('mathext-js');
 
@@ -9,15 +10,24 @@ var CENTRE_X = 100;
 var CENTRE_Y = 100;
 var penState = 'up';
 
+var initialCanvas = document.getElementById('logo');
+if (initialCanvas.getContext) {
+    var ctx = initialCanvas.getContext("2d");
+    ctx.fillStyle = "#000"
+    ctx.fillRect(0, 0, 300, 600);
+}
+
 var draw = function draw (logoCode) {
     var canvas = document.getElementById('logo');
     if (canvas.getContext) {
         var ctx = canvas.getContext("2d");
+        ctx.fillStyle = "#000"
+        ctx.fillRect(0, 0, 300, 600);
         ctx.beginPath();
         ctx.moveTo(CENTRE_X, CENTRE_Y);
         var currentX = CENTRE_X;
         var currentY = CENTRE_Y;
-        var currentDirection = 0;
+        var currentDirection = -90;
         for (var i = 0; i < logoCode.length; i++) {
             var cmd = logoCode[i].split(' ');
             switch (cmd[0]) {
@@ -43,20 +53,21 @@ var draw = function draw (logoCode) {
                     break;
                 case 'left':
                     if (currentDirection <= 180 && currentDirection >= 0){
-                        currentDirection -= parseInt(cmd[1]);
-                    } else {
                         currentDirection += parseInt(cmd[1]);
+                    } else {
+                        currentDirection -= parseInt(cmd[1]);
                     }
                     break;
                 case 'right':
                     if (currentDirection >= 180 && currentDirection <= 0){
-                        currentDirection += parseInt(cmd[1]);
-                    } else {
                         currentDirection -= parseInt(cmd[1]);
+                    } else {
+                        currentDirection += parseInt(cmd[1]);
                         if (currentDirection == -180) currentDirection = 180;
                     }
                     break;
             }
+            ctx.strokeStyle = "#33ff00"
             ctx.stroke();
         }
 
@@ -71,12 +82,13 @@ var moveOrDraw = function (ctx, x, y) {
     }
 };
 
-function clearCanvas(context, canvas) {
+var clearCanvas = function (context, canvas) {
   context.clearRect(0,0,context.canvas.width,context.canvas.height);
-}
+};
 
 var run = document.getElementById('run');
-run.addEventListener('click', function () {
+run.addEventListener('click', function (e) {
+    e.preventDefault();
     var code = document.getElementById('code');
     logoCode = parser.parse(code.value);
     draw(logoCode);
@@ -91,6 +103,32 @@ clear.addEventListener('click', function () {
         var ctx = canvas.getContext('2d');
         clearCanvas(ctx, canvas);
     }
+});
+
+var post = function(url) {
+    var httpRequest;
+    var logoForm = document.getElementById('logoForm');
+    logoForm.addEventListener('submit', function() {
+        return false;
+    });
+    if (window.XMLHttpRequest) {
+        httpRequest = new XMLHttpRequest();
+    }
+
+    if (!httpRequest) {
+        alert('Unfortunately we can\'t create a http request which means we can\'t drive the robot, sorry!');
+        return false;
+    }
+    httpRequest.onreadystatechange = function() {
+        alert('posted');
+    };
+    httpRequest.open('POST', url);
+    httpRequest.send(new FormData(logoForm));
+};
+
+var driver = document.getElementById('driver');
+driver.addEventListener('click', function() {
+    post(document.location.href + "/drive");
 });
 },{"mathext-js":2,"rogoto-js":3}],2:[function(require,module,exports){
 function Mathext () {

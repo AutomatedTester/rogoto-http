@@ -5,8 +5,16 @@
         <link rel="stylesheet" type="text/css" href="static/css/index.css">
     </head>
     <body>
-        <canvas id='logo'></canvas>
-        <textarea id='code'></textarea><button for='code' id='run'>Run</button><button id='clear'>Clear</button>
+        <div id=container>
+            <form id='logoForm' onSubmit='return false;'>
+                <div class='lineUp'>
+                  <canvas id='logo'></canvas>
+                  <textarea id='code'></textarea><button class='buttons' for='code' id='run'>Run</button>
+                  <button class='buttons' id='clear'>Clear</button>
+                  <button class='buttons' id='driver'>Drive BrickPi</button>
+                </div>
+            </form>
+        </div>
         <script type="text/javascript" src='static/javascript/bundle.js'></script>
     </body>
 </html>
