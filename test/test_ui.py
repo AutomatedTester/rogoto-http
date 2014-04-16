@@ -55,3 +55,11 @@ class TestUserInterface(object):
         self.driver.find_element('id', 'code').send_keys("pendup")
         self.driver.find_element('id', 'run').click()
         assert "There is an error in your code" == self.driver.find_element('id', 'error').text
+
+    def test_we_get_can_clear_an_error_after_we_post_bad_syntax(self):
+        self.driver.get('http://localhost:5000/logo')
+        self.driver.find_element('id', 'code').send_keys("pendup")
+        self.driver.find_element('id', 'run').click()
+        assert "There is an error in your code" == self.driver.find_element('id', 'error').text
+        self.driver.find_element('id', 'clear').click()
+        assert "" == self.driver.find_element('id', 'error').text

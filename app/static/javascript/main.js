@@ -102,6 +102,8 @@ var clear = document.getElementById('clear');
 clear.addEventListener('click', function () {
     var code = document.getElementById('code');
     code.value = '';
+    var error = document.getElementById('error');
+    error.textContent = '';
     var canvas = document.getElementById('logo');
     if (canvas.getContext) {
         var ctx = canvas.getContext('2d');
