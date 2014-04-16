@@ -49,3 +49,9 @@ class TestUserInterface(object):
         self.driver.get('http://localhost:5000/logo')
         self.driver.find_element('id', 'code').send_keys("penup\nforward 10\npendown")
         self.driver.find_element('id', 'driver').click()
+
+    def test_we_get_an_error_when_we_post_bad_syntax(self):
+        self.driver.get('http://localhost:5000/logo')
+        self.driver.find_element('id', 'code').send_keys("pendup")
+        self.driver.find_element('id', 'run').click()
+        assert "There is an error in your code" == self.driver.find_element('id', 'error').text

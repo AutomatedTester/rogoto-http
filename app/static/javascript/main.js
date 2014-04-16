@@ -89,8 +89,13 @@ var run = document.getElementById('run');
 run.addEventListener('click', function (e) {
     e.preventDefault();
     var code = document.getElementById('code');
-    logoCode = parser.parse(code.value);
-    draw(logoCode);
+    try {
+        logoCode = parser.parse(code.value);
+        draw(logoCode);
+    } catch (e) {
+        var error = document.getElementById('error');
+        error.appendChild(document.createTextNode('There is an error in your code'));
+    }
 });
 
 var clear = document.getElementById('clear');
@@ -119,7 +124,7 @@ var post = function(url) {
         return false;
     }
     httpRequest.onreadystatechange = function() {
-        alert('posted');
+        // oooo watch it move
     };
     httpRequest.open('POST', url);
     httpRequest.send(new FormData(logoForm));
