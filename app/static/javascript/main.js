@@ -94,7 +94,7 @@ run.addEventListener('click', function (e) {
         draw(logoCode);
     } catch (e) {
         var error = document.getElementById('error');
-        error.appendChild(document.createTextNode('There is an error in your code'));
+        error.textContent = 'There is an error in your code';
     }
 });
 
