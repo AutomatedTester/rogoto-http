@@ -1,6 +1,7 @@
 import os
 
 from selenium import webdriver
+from selenium.webdriver.support.wait import WebDriverWait
 
 
 class TestUserInterface(object):
@@ -63,3 +64,8 @@ class TestUserInterface(object):
         assert "There is an error in your code" == self.driver.find_element('id', 'error').text
         self.driver.find_element('id', 'clear').click()
         assert "" == self.driver.find_element('id', 'error').text
+
+    def test_we_can_nagivate_to_logo_from_main_page(self):
+        self.driver.get('http://localhost:5000/')
+        self.driver.find_element('id', 'try').click()
+        WebDriverWait(self.driver, 10).until(lambda s: s.find_element('id', 'code'))
