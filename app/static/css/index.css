@@ -23,6 +23,11 @@ canvas {
     border: solid;
 }
 
+.container {
+    margin: auto;
+    width: 500px;
+}
+
 .lineUp {
     width: 400px;
 }
