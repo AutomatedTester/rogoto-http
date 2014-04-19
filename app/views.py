@@ -5,9 +5,9 @@ try:
     from rogoto_core import rogoto
 except:
     # Likely that something went wrong with the install
-    print """Could not import rogoto. Either not on Linux
-    or there was a failure during installing the
-    dependencies."""
+    print """Could not import rogoto core. It is likely the
+    serial port can't be accessed on your Raspberry Pi or
+    you are not running this on a Raspberry Pi."""
     rogoto = object()
 
 
