@@ -28,3 +28,11 @@ own [Github project](https://github.com/automatedtester/rogoto-js).
 To make changes to the way the Rogoto syntax is rendered, make changes
 to `main.js` and then run `browserify main.js -o bundle.js` and commit
 both `main.js` and `bundle.js`
+
+### Vagrant Setup
+
+If you want to use vagrant for development you can! All that you would need to do is
+
+```
+    vagrant up
+```
