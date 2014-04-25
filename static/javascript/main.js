@@ -89,14 +89,21 @@ var run = document.getElementById('run');
 run.addEventListener('click', function (e) {
     e.preventDefault();
     var code = document.getElementById('code');
-    logoCode = parser.parse(code.value);
-    draw(logoCode);
+    try {
+        logoCode = parser.parse(code.value);
+        draw(logoCode);
+    } catch (e) {
+        var error = document.getElementById('error');
+        error.textContent = 'There is an error in your code';
+    }
 });
 
 var clear = document.getElementById('clear');
 clear.addEventListener('click', function () {
     var code = document.getElementById('code');
     code.value = '';
+    var error = document.getElementById('error');
+    error.textContent = '';
     var canvas = document.getElementById('logo');
     if (canvas.getContext) {
         var ctx = canvas.getContext('2d');
@@ -119,7 +126,7 @@ var post = function(url) {
         return false;
     }
     httpRequest.onreadystatechange = function() {
-        alert('posted');
+        // oooo watch it move
     };
     httpRequest.open('POST', url);
     httpRequest.send(new FormData(logoForm));
